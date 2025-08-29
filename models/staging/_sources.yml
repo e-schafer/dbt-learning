@@ -7,7 +7,7 @@ sources:
           - name: customers_csv
             description: "Données clients depuis fichier CSV"
             meta:
-                external_location: "read_csv_auto('data/raw/customers.csv')"
+                external_location: "read_csv_auto('./data/raw/customers.csv')"
             columns:
                 - name: customer_id
                   description: "Identifiant unique du client"
@@ -31,7 +31,7 @@ sources:
           - name: orders_parquet
             description: "Données commandes depuis fichier Parquet"
             meta:
-                external_location: "read_parquet('data/raw/orders.parquet')"
+                external_location: "read_parquet('./data/raw/orders.parquet')"
             columns:
                 - name: order_id
                   description: "Identifiant unique de la commande"
@@ -59,7 +59,7 @@ sources:
           - name: products_csv
             description: "Données produits depuis fichier CSV"
             meta:
-                external_location: "read_csv_auto('data/raw/products.csv')"
+                external_location: "read_csv_auto('./data/raw/products.csv')"
             columns:
                 - name: product_id
                   description: "Identifiant unique du produit"

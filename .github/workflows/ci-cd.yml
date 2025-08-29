@@ -31,14 +31,12 @@ jobs:
 
             - name: Install dependencies
               run: |
-                  uv sync
-                  uv sync --extra dev
+                  uv sync --locked --all-extras --dev
 
-            - name: Lint code
+            - name: Lint and format code
               run: |
-                  uv run black --check .
-                  uv run isort --check-only .
-                  uv run flake8 .
+                  uv run ruff check . --exclude=".venv"
+                  uv run ruff format --check . --exclude=".venv"
 
             - name: Install DBT dependencies
               run: uv run dbt deps

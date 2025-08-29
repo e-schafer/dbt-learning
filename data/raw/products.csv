@@ -1,0 +1,11 @@
+product_id,product_name,category,price,cost
+1,Laptop Dell XPS,Electronics,999.99,600.00
+2,iPhone 14,Electronics,899.99,550.00
+3,Nike Air Max,Fashion,129.99,65.00
+4,Adidas Ultraboost,Fashion,159.99,80.00
+5,Samsung TV 55",Electronics,799.99,480.00
+6,MacBook Pro,Electronics,1299.99,800.00
+7,Zara Jacket,Fashion,79.99,35.00
+8,H&M T-Shirt,Fashion,19.99,8.00
+9,Sony Headphones,Electronics,199.99,90.00
+10,Levi's Jeans,Fashion,89.99,40.00

@@ -1,0 +1,11 @@
+customer_id,first_name,last_name,email,registration_date
+1,Jean,Dupont,jean.dupont@email.com,2023-01-15
+2,Marie,Martin,marie.martin@email.com,2023-02-20
+3,Pierre,Durand,pierre.durand@email.com,2023-03-10
+4,Sophie,Leroy,sophie.leroy@email.com,2023-04-05
+5,Antoine,Moreau,antoine.moreau@email.com,2023-05-12
+6,Camille,Simon,camille.simon@email.com,2023-06-18
+7,Lucas,Michel,lucas.michel@email.com,2023-07-22
+8,Emma,Petit,emma.petit@email.com,2023-08-30
+9,Thomas,Robert,thomas.robert@email.com,2023-09-14
+10,Léa,Richard,lea.richard@email.com,2023-10-08

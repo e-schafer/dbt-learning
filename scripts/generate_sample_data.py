@@ -72,7 +72,7 @@ if __name__ == "__main__":
     print(
         f"📅 Période: {orders_df['order_date'].min()} à {orders_df['order_date'].max()}"
     )
-    print(f"💰 Montant total: {orders_df['total_amount'].sum():.2f}€")
+    print(f"💰 Montant total: {orders_df['total_amount'].sum(): .2f}€")
 
     # Affichage d'un échantillon
     print("\n📋 Échantillon des données:")

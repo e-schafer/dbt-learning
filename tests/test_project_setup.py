@@ -2,7 +2,6 @@
 Tests unitaires pour les fonctions utilitaires du projet DBT
 """
 
-import os
 import subprocess
 from pathlib import Path
 

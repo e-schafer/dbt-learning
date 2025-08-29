@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: test_data_integrity
+    description: "Test d'intégrité des données - vérifie qu'il n'y a pas de commandes orphelines"
+    
+  - name: test_business_logic
+    description: "Test de logique métier - vérifie qu'il n'y a pas de montants négatifs dans les ventes"

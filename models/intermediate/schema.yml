@@ -1,0 +1,82 @@
+version: 2
+
+models:
+  - name: int_customer_metrics
+    description: "Métriques agrégées par client avec segmentation et analyse comportementale"
+    columns:
+      - name: customer_id
+        description: "Identifiant unique du client"
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: "Prénom du client"
+      - name: last_name
+        description: "Nom de famille du client"
+      - name: email
+        description: "Adresse email du client"
+      - name: registration_date
+        description: "Date d'inscription du client"
+      - name: total_orders
+        description: "Nombre total de commandes passées par le client"
+      - name: total_spent
+        description: "Montant total dépensé par le client"
+      - name: avg_order_value
+        description: "Valeur moyenne des commandes du client"
+      - name: first_order_date
+        description: "Date de la première commande"
+      - name: last_order_date
+        description: "Date de la dernière commande"
+      - name: delivered_orders
+        description: "Nombre de commandes livrées avec succès"
+      - name: cancelled_orders
+        description: "Nombre de commandes annulées"
+      - name: customer_segment
+        description: "Segment client basé sur la valeur totale (High/Medium/Low/No Purchase)"
+      - name: customer_status
+        description: "Statut d'activité du client (Active/At Risk/Inactive/Never Purchased)"
+      - name: delivery_success_rate
+        description: "Taux de réussite des livraisons en pourcentage"
+
+  - name: int_product_sales
+    description: "Analyse des ventes par produit avec métriques de performance et classements"
+    columns:
+      - name: product_id
+        description: "Identifiant unique du produit"
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: "Nom du produit"
+      - name: category
+        description: "Catégorie du produit"
+      - name: price
+        description: "Prix de vente unitaire"
+      - name: cost
+        description: "Coût unitaire"
+      - name: margin
+        description: "Marge unitaire"
+      - name: orders_count
+        description: "Nombre de commandes contenant ce produit"
+      - name: quantity_sold
+        description: "Quantité totale vendue (simulée)"
+      - name: total_revenue
+        description: "Chiffre d'affaires total généré"
+      - name: total_cost
+        description: "Coût total"
+      - name: total_margin
+        description: "Marge totale générée"
+      - name: avg_selling_price
+        description: "Prix de vente moyen"
+      - name: first_sale_date
+        description: "Date de première vente"
+      - name: last_sale_date
+        description: "Date de dernière vente"
+      - name: revenue_rank
+        description: "Classement par chiffre d'affaires"
+      - name: quantity_rank
+        description: "Classement par quantité vendue"
+      - name: margin_rank
+        description: "Classement par marge totale"
+      - name: performance_category
+        description: "Catégorie de performance (Top/Good/Low Performer/No Sales)"

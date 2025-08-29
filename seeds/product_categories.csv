@@ -1,0 +1,11 @@
+category_id,category_name,parent_category
+1,Electronics,null
+2,Fashion,null
+3,Home,null
+4,Books,null
+5,Sports,null
+6,Smartphones,Electronics
+7,Laptops,Electronics
+8,TVs,Electronics
+9,Clothing,Fashion
+10,Shoes,Fashion

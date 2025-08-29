@@ -21,7 +21,7 @@ with customer_orders as (
         count(case when o.status = 'cancelled' then 1 end) as cancelled_orders
     from {{ ref('stg_customers') }} c
     left join {{ ref('stg_orders') }} o on c.customer_id = o.customer_id
-    group by 
+    group by
         c.customer_id,
         c.first_name,
         c.last_name,

@@ -60,7 +60,7 @@ vars:
   # Date vars
   start_date: '2020-01-01'
   end_date: '2024-12-31'
-  
+
   # Source data paths
   raw_data_path: '../data/raw'
   processed_data_path: '../data/processed'

@@ -39,7 +39,7 @@ product_sales as (
         min(order_date) as first_sale_date,
         max(order_date) as last_sale_date
     from order_details
-    group by 
+    group by
         product_id,
         product_name,
         category,

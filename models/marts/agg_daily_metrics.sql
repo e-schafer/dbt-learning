@@ -30,22 +30,22 @@ enriched_metrics as (
         round((successful_orders::decimal / total_orders) * 100, 2) as success_rate,
         round((cancelled_orders::decimal / total_orders) * 100, 2) as cancellation_rate,
         round((high_value_orders::decimal / total_orders) * 100, 2) as high_value_rate,
-        
+
         -- Métriques mobiles (fenêtre de 7 jours)
         avg(total_revenue) over (
-            order by order_date 
+            order by order_date
             rows between 6 preceding and current row
         ) as rolling_7d_avg_revenue,
-        
+
         avg(total_orders) over (
-            order by order_date 
+            order by order_date
             rows between 6 preceding and current row
         ) as rolling_7d_avg_orders,
-        
+
         -- Comparaisons période précédente
         lag(total_revenue, 1) over (order by order_date) as prev_day_revenue,
         lag(total_orders, 1) over (order by order_date) as prev_day_orders,
-        
+
         current_timestamp as dbt_updated_at
     from daily_metrics
 ),
@@ -59,7 +59,7 @@ final_metrics as (
             then round(((total_revenue - prev_day_revenue) / prev_day_revenue) * 100, 2)
             else null
         end as revenue_growth_rate,
-        
+
         case
             when prev_day_orders > 0
             then round(((total_orders - prev_day_orders) / prev_day_orders::decimal) * 100, 2)

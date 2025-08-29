@@ -1,16 +1,16 @@
-{# 
+{#
 Macro pour tester qu'une valeur est dans une plage
 Usage: {{ test_value_in_range('price', 0, 1000) }}
 #}
 {% test value_in_range(model, column_name, min_value, max_value) %}
     select count(*)
     from {{ model }}
-    where {{ column_name }} < {{ min_value }} 
+    where {{ column_name }} < {{ min_value }}
        or {{ column_name }} > {{ max_value }}
        or {{ column_name }} is null
 {% endtest %}
 
-{# 
+{#
 Macro pour tester qu'une date est récente
 Usage: {{ test_recent_date('created_at', 30) }}
 #}
@@ -21,7 +21,7 @@ Usage: {{ test_recent_date('created_at', 30) }}
        or {{ column_name }} is null
 {% endtest %}
 
-{# 
+{#
 Macro pour tester qu'un email est valide
 Usage: {{ test_valid_email('email') }}
 #}
@@ -38,7 +38,7 @@ Usage: {{ test_valid_email('email') }}
       )
 {% endtest %}
 
-{# 
+{#
 Macro pour tester la cohérence des montants
 Usage: {{ test_amount_consistency('total', 'subtotal', 'tax') }}
 #}
@@ -48,7 +48,7 @@ Usage: {{ test_amount_consistency('total', 'subtotal', 'tax') }}
     where abs({{ total_column }} - ({{ subtotal_column }} + {{ tax_column }})) > 0.01
 {% endtest %}
 
-{# 
+{#
 Macro pour tester qu'une valeur existe dans une table de référence
 Usage: {{ test_referential_integrity('customer_id', ref('dim_customers'), 'customer_id') }}
 #}

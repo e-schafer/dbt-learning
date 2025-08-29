@@ -84,7 +84,7 @@ echo "🗄️ Vérification de la base de données..."
 DB_FILE="database/dbt_learning_dev.duckdb"
 if [ -f "$DB_FILE" ]; then
     echo "✅ Base de données DuckDB créée"
-    
+
     # Compter les tables créées
     TABLE_COUNT=$(dbt run-operation list_tables | grep -c "table\|view" || true)
     if [ "$TABLE_COUNT" -gt 0 ]; then

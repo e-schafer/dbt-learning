@@ -35,7 +35,7 @@ with sales_facts as (
         case when o.status = 'delivered' then 1 else 0 end as is_successful_order,
         case when o.status = 'cancelled' then 1 else 0 end as is_cancelled_order,
         -- Métriques de délai (simulation)
-        case 
+        case
             when o.status = 'delivered' then random() * 10 + 1  -- 1-11 jours
             else null
         end as delivery_days,

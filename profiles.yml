@@ -7,7 +7,7 @@ dbt_learning:
       threads: 4
       keepalives_idle: 0
       search_path: main
-      
+
     prod:
       type: duckdb
       path: './database/dbt_learning_prod.duckdb'
@@ -15,7 +15,7 @@ dbt_learning:
       threads: 8
       keepalives_idle: 0
       search_path: main
-      
+
     test:
       type: duckdb
       path: ':memory:'

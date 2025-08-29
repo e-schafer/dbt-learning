@@ -17,8 +17,8 @@ cleaned as (
         cast(price as decimal(10,2)) as price,
         cast(cost as decimal(10,2)) as cost,
         cast(price as decimal(10,2)) - cast(cost as decimal(10,2)) as margin,
-        case 
-            when cast(cost as decimal(10,2)) > 0 
+        case
+            when cast(cost as decimal(10,2)) > 0
             then round(((cast(price as decimal(10,2)) - cast(cost as decimal(10,2))) / cast(cost as decimal(10,2))) * 100, 2)
             else null
         end as margin_percentage,

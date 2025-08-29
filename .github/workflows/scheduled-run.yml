@@ -42,12 +42,4 @@ jobs:
               run: uv run dbt test --target prod
 
             - name: Run snapshots
-              run: uv run dbt snapshot --target prod
-
-            - name: Send notification on failure
-              if: failure()
-              uses: 8398a7/action-slack@v3
-              with:
-                  status: failure
-                  channel: "#data-alerts"
-                  webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+              run: uv run dbt snapshot --target prods

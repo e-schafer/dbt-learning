@@ -6,6 +6,7 @@
       unique_key='customer_id',
       strategy='timestamp',
       updated_at='dbt_updated_at',
+      description='Snapshot historique des données clients pour tracer l\'évolution des métriques'
     )
 }}
 

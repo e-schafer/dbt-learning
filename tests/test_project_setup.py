@@ -42,7 +42,7 @@ class TestDBTConfiguration:
 
     def test_dbt_project_is_valid_yaml(self):
         """Vérifie que dbt_project.yml est un YAML valide"""
-        with open("dbt_project.yml", "r") as f:
+        with open("dbt_project.yml") as f:
             config = yaml.safe_load(f)
         assert config is not None
         assert "name" in config
@@ -50,7 +50,7 @@ class TestDBTConfiguration:
 
     def test_profiles_is_valid_yaml(self):
         """Vérifie que profiles.yml est un YAML valide"""
-        with open("profiles.yml", "r") as f:
+        with open("profiles.yml") as f:
             config = yaml.safe_load(f)
         assert config is not None
         assert "dbt_learning" in config
@@ -115,7 +115,7 @@ class TestGitHubActions:
         ]
         for file_path in workflow_files:
             if Path(file_path).exists():
-                with open(file_path, "r") as f:
+                with open(file_path) as f:
                     config = yaml.safe_load(f)
                 assert config is not None
                 assert "on" in config or "name" in config

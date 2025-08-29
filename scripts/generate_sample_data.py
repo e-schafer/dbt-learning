@@ -35,13 +35,7 @@ def generate_orders_data():
         total_amount = round(random.uniform(10, 1000), 2)
 
         # Statut avec pondération réaliste
-        statuses = (
-            ["delivered"] * 60
-            + ["shipped"] * 20
-            + ["processing"] * 10
-            + ["pending"] * 7
-            + ["cancelled"] * 3
-        )
+        statuses = ["delivered"] * 60 + ["shipped"] * 20 + ["processing"] * 10 + ["pending"] * 7 + ["cancelled"] * 3
         status = random.choice(statuses)
 
         orders.append(
@@ -69,9 +63,7 @@ if __name__ == "__main__":
 
     print(f"✅ Fichier Parquet généré: {output_path}")
     print(f"📊 Nombre de commandes: {len(orders_df)}")
-    print(
-        f"📅 Période: {orders_df['order_date'].min()} à {orders_df['order_date'].max()}"
-    )
+    print(f"📅 Période: {orders_df['order_date'].min()} à {orders_df['order_date'].max()}")
     print(f"💰 Montant total: {orders_df['total_amount'].sum(): .2f}€")
 
     # Affichage d'un échantillon

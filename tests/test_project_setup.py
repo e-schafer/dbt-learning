@@ -58,9 +58,7 @@ class TestDBTConfiguration:
     def test_dbt_parse_succeeds(self):
         """Vérifie que DBT peut parser le projet"""
         try:
-            result = subprocess.run(
-                ["dbt", "parse"], capture_output=True, text=True, timeout=30
-            )
+            result = subprocess.run(["dbt", "parse"], capture_output=True, text=True, timeout=30)
             # DBT parse peut échouer si les dépendances ne sont pas installées
             # mais ne devrait pas avoir d'erreurs de syntaxe
             assert "Compilation Error" not in result.stderr

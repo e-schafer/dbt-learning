@@ -32,5 +32,6 @@ repos:
     hooks:
       - id: check-script-semicolon
       - id: check-model-has-description
+        exclude: '^tests/|^snapshots/'
       - id: dbt-compile
       - id: dbt-docs-generate

@@ -1,156 +1,156 @@
 name: DBT CI/CD Pipeline
 
 on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main ]
+    push:
+        branches: [main, develop]
+    pull_request:
+        branches: [main]
 
 env:
-  DBT_PROFILES_DIR: ${{ github.workspace }}
-  DBT_PROJECT_DIR: ${{ github.workspace }}
+    DBT_PROFILES_DIR: ${{ github.workspace }}
+    DBT_PROJECT_DIR: ${{ github.workspace }}
 
 jobs:
-  lint-and-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.9, 3.10, 3.11]
+    lint-and-test:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                python-version: [3.9, 3.10, 3.11]
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-    - name: Install uv
-      uses: astral-sh/setup-uv@v2
-      with:
-        version: "latest"
+            - name: Install uv
+              uses: astral-sh/setup-uv@v2
+              with:
+                  version: "latest"
 
-    - name: Set up Python ${{ matrix.python-version }}
-      run: uv python install ${{ matrix.python-version }}
+            - name: Set up Python ${{ matrix.python-version }}
+              run: uv python install ${{ matrix.python-version }}
 
-    - name: Install dependencies
-      run: |
-        uv sync
-        uv sync --extra dev
+            - name: Install dependencies
+              run: |
+                  uv sync
+                  uv sync --extra dev
 
-    - name: Lint code
-      run: |
-        uv run black --check .
-        uv run isort --check-only .
-        uv run flake8 .
+            - name: Lint code
+              run: |
+                  uv run black --check .
+                  uv run isort --check-only .
+                  uv run flake8 .
 
-    - name: Install DBT dependencies
-      run: uv run dbt deps
+            - name: Install DBT dependencies
+              run: uv run dbt deps
 
-    - name: Generate sample data
-      run: uv run python scripts/generate_sample_data.py
+            - name: Generate sample data
+              run: uv run python scripts/generate_sample_data.py
 
-    - name: DBT Debug
-      run: uv run dbt debug
+            - name: DBT Debug
+              run: uv run dbt debug
 
-    - name: DBT Parse
-      run: uv run dbt parse
+            - name: DBT Parse
+              run: uv run dbt parse
 
-    - name: DBT Seed
-      run: uv run dbt seed
+            - name: DBT Seed
+              run: uv run dbt seed
 
-    - name: DBT Run (staging models)
-      run: uv run dbt run --select staging
+            - name: DBT Run (staging models)
+              run: uv run dbt run --select staging
 
-    - name: DBT Test (staging models)
-      run: uv run dbt test --select staging
+            - name: DBT Test (staging models)
+              run: uv run dbt test --select staging
 
-    - name: DBT Run (all models)
-      run: uv run dbt run
+            - name: DBT Run (all models)
+              run: uv run dbt run
 
-    - name: DBT Test (all models)
-      run: uv run dbt test
+            - name: DBT Test (all models)
+              run: uv run dbt test
 
-    - name: Run Python tests
-      run: uv run pytest --cov=. --cov-report=xml
+            - name: Run Python tests
+              run: uv run pytest --cov=. --cov-report=xml
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        file: ./coverage.xml
-        flags: unittests
-        name: codecov-umbrella
+            - name: Upload coverage to Codecov
+              uses: codecov/codecov-action@v3
+              with:
+                  file: ./coverage.xml
+                  flags: unittests
+                  name: codecov-umbrella
 
-  deploy-docs:
-    runs-on: ubuntu-latest
-    needs: lint-and-test
-    if: github.ref == 'refs/heads/main'
+    deploy-docs:
+        runs-on: ubuntu-latest
+        needs: lint-and-test
+        if: github.ref == 'refs/heads/main'
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-    - name: Install uv
-      uses: astral-sh/setup-uv@v2
+            - name: Install uv
+              uses: astral-sh/setup-uv@v2
 
-    - name: Set up Python
-      run: uv python install 3.11
+            - name: Set up Python
+              run: uv python install 3.11
 
-    - name: Install dependencies
-      run: |
-        uv sync
-        uv sync --extra dev
+            - name: Install dependencies
+              run: |
+                  uv sync
+                  uv sync --extra dev
 
-    - name: Install DBT dependencies
-      run: uv run dbt deps
+            - name: Install DBT dependencies
+              run: uv run dbt deps
 
-    - name: Generate sample data
-      run: uv run python scripts/generate_sample_data.py
+            - name: Generate sample data
+              run: uv run python scripts/generate_sample_data.py
 
-    - name: DBT Run
-      run: uv run dbt run
+            - name: DBT Run
+              run: uv run dbt run
 
-    - name: Generate DBT docs
-      run: |
-        uv run dbt docs generate
+            - name: Generate DBT docs
+              run: |
+                  uv run dbt docs generate
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./target
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./target
 
-  deploy-prod:
-    runs-on: ubuntu-latest
-    needs: lint-and-test
-    if: github.ref == 'refs/heads/main'
-    environment: production
+    deploy-prod:
+        runs-on: ubuntu-latest
+        needs: lint-and-test
+        if: github.ref == 'refs/heads/main'
+        environment: production
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-    - name: Install uv
-      uses: astral-sh/setup-uv@v2
+            - name: Install uv
+              uses: astral-sh/setup-uv@v2
 
-    - name: Set up Python
-      run: uv python install 3.11
+            - name: Set up Python
+              run: uv python install 3.11
 
-    - name: Install dependencies
-      run: |
-        uv sync
-        uv sync --extra dev
+            - name: Install dependencies
+              run: |
+                  uv sync
+                  uv sync --extra dev
 
-    - name: Install DBT dependencies
-      run: uv run dbt deps
+            - name: Install DBT dependencies
+              run: uv run dbt deps
 
-    - name: Generate sample data
-      run: uv run python scripts/generate_sample_data.py
+            - name: Generate sample data
+              run: uv run python scripts/generate_sample_data.py
 
-    - name: DBT Run (Production)
-      run: uv run dbt run --target prod
+            - name: DBT Run (Production)
+              run: uv run dbt run --target prod
 
-    - name: DBT Test (Production)
-      run: uv run dbt test --target prod
+            - name: DBT Test (Production)
+              run: uv run dbt test --target prod
 
-    - name: Run snapshots
-      run: uv run dbt snapshot --target prod
+            - name: Run snapshots
+              run: uv run dbt snapshot --target prod
 
-    - name: Generate production docs
-      run: uv run dbt docs generate --target prod
+            - name: Generate production docs
+              run: uv run dbt docs generate --target prod

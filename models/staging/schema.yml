@@ -1,87 +1,87 @@
 version: 2
 
 models:
-  - name: stg_customers
-    description: "Table des clients nettoyée et standardisée depuis les données CSV"
-    columns:
-      - name: customer_id
-        description: "Identifiant unique du client"
-        tests:
-          - unique
-          - not_null
-      - name: first_name
-        description: "Prénom du client en minuscules"
-      - name: last_name
-        description: "Nom de famille du client en minuscules"
-      - name: email
-        description: "Adresse email du client en minuscules"
-        tests:
-          - unique
-          - not_null
-      - name: registration_date
-        description: "Date d'inscription du client"
-        tests:
-          - not_null
-      - name: dbt_updated_at
-        description: "Timestamp de dernière mise à jour par DBT"
+    - name: stg_customers
+      description: "Table des clients nettoyée et standardisée depuis les données CSV"
+      columns:
+          - name: customer_id
+            description: "Identifiant unique du client"
+            tests:
+                - unique
+                - not_null
+          - name: first_name
+            description: "Prénom du client en minuscules"
+          - name: last_name
+            description: "Nom de famille du client en minuscules"
+          - name: email
+            description: "Adresse email du client en minuscules"
+            tests:
+                - unique
+                - not_null
+          - name: registration_date
+            description: "Date d'inscription du client"
+            tests:
+                - not_null
+          - name: dbt_updated_at
+            description: "Timestamp de dernière mise à jour par DBT"
 
-  - name: stg_orders
-    description: "Table des commandes nettoyée et standardisée depuis les données Parquet"
-    columns:
-      - name: order_id
-        description: "Identifiant unique de la commande"
-        tests:
-          - unique
-          - not_null
-      - name: customer_id
-        description: "Identifiant du client ayant passé la commande"
-        tests:
-          - not_null
-      - name: order_date
-        description: "Date de la commande"
-        tests:
-          - not_null
-      - name: total_amount
-        description: "Montant total de la commande en decimal(10,2)"
-        tests:
-          - not_null
-      - name: status
-        description: "Statut de la commande en minuscules"
-        tests:
-          - accepted_values:
-              values: ['pending', 'processing', 'shipped', 'delivered', 'cancelled']
-      - name: order_year
-        description: "Année de la commande extraite de order_date"
-      - name: order_month
-        description: "Mois de la commande extrait de order_date"
-      - name: order_quarter
-        description: "Trimestre de la commande extrait de order_date"
-      - name: dbt_updated_at
-        description: "Timestamp de dernière mise à jour par DBT"
+    - name: stg_orders
+      description: "Table des commandes nettoyée et standardisée depuis les données Parquet"
+      columns:
+          - name: order_id
+            description: "Identifiant unique de la commande"
+            tests:
+                - unique
+                - not_null
+          - name: customer_id
+            description: "Identifiant du client ayant passé la commande"
+            tests:
+                - not_null
+          - name: order_date
+            description: "Date de la commande"
+            tests:
+                - not_null
+          - name: total_amount
+            description: "Montant total de la commande en decimal(10,2)"
+            tests:
+                - not_null
+          - name: status
+            description: "Statut de la commande en minuscules"
+            tests:
+                - accepted_values:
+                      values: ["pending", "processing", "shipped", "delivered", "cancelled"]
+          - name: order_year
+            description: "Année de la commande extraite de order_date"
+          - name: order_month
+            description: "Mois de la commande extrait de order_date"
+          - name: order_quarter
+            description: "Trimestre de la commande extrait de order_date"
+          - name: dbt_updated_at
+            description: "Timestamp de dernière mise à jour par DBT"
 
-  - name: stg_products
-    description: "Table des produits nettoyée et standardisée depuis les données CSV"
-    columns:
-      - name: product_id
-        description: "Identifiant unique du produit"
-        tests:
-          - unique
-          - not_null
-      - name: product_name
-        description: "Nom du produit nettoyé"
-        tests:
-          - not_null
-      - name: category
-        description: "Catégorie du produit en minuscules"
-      - name: price
-        description: "Prix de vente du produit en decimal(10,2)"
-        tests:
-          - not_null
-      - name: cost
-        description: "Coût du produit en decimal(10,2)"
-      - name: margin
-        description: "Marge brute calculée (price - cost)"
-      - name: margin_percentage
-        description: "Pourcentage de marge calculé"
-      - name: dbt_updated_at
-        description: "Timestamp de dernière mise à jour par DBT"
+    - name: stg_products
+      description: "Table des produits nettoyée et standardisée depuis les données CSV"
+      columns:
+          - name: product_id
+            description: "Identifiant unique du produit"
+            tests:
+                - unique
+                - not_null
+          - name: product_name
+            description: "Nom du produit nettoyé"
+            tests:
+                - not_null
+          - name: category
+            description: "Catégorie du produit en minuscules"
+          - name: price
+            description: "Prix de vente du produit en decimal(10,2)"
+            tests:
+                - not_null
+          - name: cost
+            description: "Coût du produit en decimal(10,2)"
+          - name: margin
+            description: "Marge brute calculée (price - cost)"
+          - name: margin_percentage
+            description: "Pourcentage de marge calculé"
+          - name: dbt_updated_at
+            description: "Timestamp de dernière mise à jour par DBT"

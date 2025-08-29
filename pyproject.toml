@@ -2,9 +2,7 @@
 name = "dbt-learning"
 version = "0.1.0"
 description = "Projet d'apprentissage DBT avec DuckDB"
-authors = [
-    {name = "Eric", email = "eric@example.com"}
-]
+authors = [{ name = "Eric", email = "eric@example.com" }]
 dependencies = [
     "dbt-core>=1.6.0",
     "dbt-duckdb>=1.6.0",
@@ -14,7 +12,7 @@ dependencies = [
 ]
 requires-python = ">=3.9"
 readme = "README.md"
-license = {text = "MIT"}
+license = { text = "MIT" }
 
 [project.optional-dependencies]
 dev = [

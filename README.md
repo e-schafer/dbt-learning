@@ -5,8 +5,9 @@ Un projet d'apprentissage DBT utilisant DuckDB comme base de données et support
 ## 🚀 Installation
 
 ### Prérequis
-- Python 3.9+
-- uv (gestionnaire de paquets Python moderne)
+
+-   Python 3.9+
+-   uv (gestionnaire de paquets Python moderne)
 
 ### Installation avec uv
 
@@ -27,7 +28,7 @@ dbt-learning/
 ├── profiles.yml              # Configuration des connexions
 ├── pyproject.toml           # Configuration Python et dépendances
 ├── data/                    # Données sources (CSV, Parquet)
-│   ├── raw/
+│   ├── **raw**/
 │   └── processed/
 ├── models/                  # Modèles DBT
 │   ├── staging/
@@ -86,31 +87,34 @@ pytest
 ## 📊 Sources de données
 
 Le projet supporte :
-- **Fichiers CSV** : Placés dans `data/raw/`
-- **Fichiers Parquet** : Placés dans `data/raw/`
-- **Seeds DBT** : Fichiers CSV de référence dans `seeds/`
+
+-   **Fichiers CSV** : Placés dans `data/raw/`
+-   **Fichiers Parquet** : Placés dans `data/raw/`
+-   **Seeds DBT** : Fichiers CSV de référence dans `seeds/`
 
 ## 🧪 Tests
 
-- **Tests DBT** : Tests de qualité des données intégrés dans les modèles
-- **Tests Python** : Tests unitaires avec pytest
-- **Tests d'intégration** : Validation des pipelines complets
+-   **Tests DBT** : Tests de qualité des données intégrés dans les modèles
+-   **Tests Python** : Tests unitaires avec pytest
+-   **Tests d'intégration** : Validation des pipelines complets
 
 ## 🔄 CI/CD
 
 Le projet inclut une configuration GitHub Actions pour :
-- Tests automatiques sur chaque commit
-- Validation des modèles DBT
-- Déploiement automatique
-- Génération de la documentation
+
+-   Tests automatiques sur chaque commit
+-   Validation des modèles DBT
+-   Déploiement automatique
+-   Génération de la documentation
 
 ## 📈 Exemples de modèles
 
 Le projet inclut des exemples pour :
-- Staging des données brutes
-- Transformations intermédiaires
-- Marts finalisés pour l'analyse
-- Tests de qualité des données
+
+-   Staging des données brutes
+-   Transformations intermédiaires
+-   Marts finalisés pour l'analyse
+-   Tests de qualité des données
 
 ## 🤝 Contribution
 

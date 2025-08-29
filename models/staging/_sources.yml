@@ -1,80 +1,80 @@
 version: 2
 
 sources:
-  - name: raw_data
-    description: "Sources de données brutes en CSV et Parquet"
-    tables:
-      - name: customers_csv
-        description: "Données clients depuis fichier CSV"
-        meta:
-          external_location: "read_csv_auto('data/raw/customers.csv')"
-        columns:
-          - name: customer_id
-            description: "Identifiant unique du client"
-            tests:
-              - unique
-              - not_null
-          - name: first_name
-            description: "Prénom du client"
-          - name: last_name
-            description: "Nom de famille du client"
-          - name: email
-            description: "Adresse email du client"
-            tests:
-              - unique
-              - not_null
-          - name: registration_date
-            description: "Date d'inscription du client"
-            tests:
-              - not_null
+    - name: raw_data
+      description: "Sources de données brutes en CSV et Parquet"
+      tables:
+          - name: customers_csv
+            description: "Données clients depuis fichier CSV"
+            meta:
+                external_location: "read_csv_auto('data/raw/customers.csv')"
+            columns:
+                - name: customer_id
+                  description: "Identifiant unique du client"
+                  tests:
+                      - unique
+                      - not_null
+                - name: first_name
+                  description: "Prénom du client"
+                - name: last_name
+                  description: "Nom de famille du client"
+                - name: email
+                  description: "Adresse email du client"
+                  tests:
+                      - unique
+                      - not_null
+                - name: registration_date
+                  description: "Date d'inscription du client"
+                  tests:
+                      - not_null
 
-      - name: orders_parquet
-        description: "Données commandes depuis fichier Parquet"
-        meta:
-          external_location: "read_parquet('data/raw/orders.parquet')"
-        columns:
-          - name: order_id
-            description: "Identifiant unique de la commande"
-            tests:
-              - unique
-              - not_null
-          - name: customer_id
-            description: "Identifiant du client"
-            tests:
-              - not_null
-          - name: order_date
-            description: "Date de la commande"
-            tests:
-              - not_null
-          - name: total_amount
-            description: "Montant total de la commande"
-            tests:
-              - not_null
-          - name: status
-            description: "Statut de la commande"
-            tests:
-              - accepted_values:
-                  values: ['pending', 'processing', 'shipped', 'delivered', 'cancelled']
+          - name: orders_parquet
+            description: "Données commandes depuis fichier Parquet"
+            meta:
+                external_location: "read_parquet('data/raw/orders.parquet')"
+            columns:
+                - name: order_id
+                  description: "Identifiant unique de la commande"
+                  tests:
+                      - unique
+                      - not_null
+                - name: customer_id
+                  description: "Identifiant du client"
+                  tests:
+                      - not_null
+                - name: order_date
+                  description: "Date de la commande"
+                  tests:
+                      - not_null
+                - name: total_amount
+                  description: "Montant total de la commande"
+                  tests:
+                      - not_null
+                - name: status
+                  description: "Statut de la commande"
+                  tests:
+                      - accepted_values:
+                            values: ["pending", "processing", "shipped", "delivered", "cancelled"]
 
-      - name: products_csv
-        description: "Données produits depuis fichier CSV"
-        meta:
-          external_location: "read_csv_auto('data/raw/products.csv')"
-        columns:
-          - name: product_id
-            description: "Identifiant unique du produit"
-            tests:
-              - unique
-              - not_null
-          - name: product_name
-            description: "Nom du produit"
-            tests:
-              - not_null
-          - name: category
-            description: "Catégorie du produit"
-          - name: price
-            description: "Prix du produit"
-            tests:
-              - not_null
-          - name: cost
-            description: "Coût du produit"
+          - name: products_csv
+            description: "Données produits depuis fichier CSV"
+            meta:
+                external_location: "read_csv_auto('data/raw/products.csv')"
+            columns:
+                - name: product_id
+                  description: "Identifiant unique du produit"
+                  tests:
+                      - unique
+                      - not_null
+                - name: product_name
+                  description: "Nom du produit"
+                  tests:
+                      - not_null
+                - name: category
+                  description: "Catégorie du produit"
+                - name: price
+                  description: "Prix du produit"
+                  tests:
+                      - not_null
+                - name: cost
+                  description: "Coût du produit"

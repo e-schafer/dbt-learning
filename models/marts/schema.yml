@@ -1,147 +1,147 @@
 version: 2
 
 models:
-  - name: dim_customers
-    description: "Dimension clients enrichie avec métriques et segmentation pour l'analyse BI"
-    columns:
-      - name: customer_id
-        description: "Identifiant unique du client (clé primaire)"
-        tests:
-          - unique
-          - not_null
-      - name: first_name
-        description: "Prénom du client"
-      - name: last_name
-        description: "Nom de famille du client"
-      - name: email
-        description: "Adresse email du client"
-      - name: registration_date
-        description: "Date d'inscription du client"
-      - name: total_orders
-        description: "Nombre total de commandes"
-      - name: total_spent
-        description: "Montant total dépensé (lifetime value)"
-      - name: avg_order_value
-        description: "Valeur moyenne des commandes"
-      - name: first_order_date
-        description: "Date de première commande"
-      - name: last_order_date
-        description: "Date de dernière commande"
-      - name: delivered_orders
-        description: "Nombre de commandes livrées"
-      - name: cancelled_orders
-        description: "Nombre de commandes annulées"
-      - name: delivery_success_rate
-        description: "Taux de réussite des livraisons (%)"
-      - name: customer_segment
-        description: "Segment de valeur client"
-      - name: customer_status
-        description: "Statut d'activité du client"
-      - name: customer_tenure
-        description: "Ancienneté du client (New/Recent/Established)"
-      - name: days_since_last_order
-        description: "Nombre de jours depuis la dernière commande"
-      - name: dbt_updated_at
-        description: "Timestamp de dernière mise à jour"
+    - name: dim_customers
+      description: "Dimension clients enrichie avec métriques et segmentation pour l'analyse BI"
+      columns:
+          - name: customer_id
+            description: "Identifiant unique du client (clé primaire)"
+            tests:
+                - unique
+                - not_null
+          - name: first_name
+            description: "Prénom du client"
+          - name: last_name
+            description: "Nom de famille du client"
+          - name: email
+            description: "Adresse email du client"
+          - name: registration_date
+            description: "Date d'inscription du client"
+          - name: total_orders
+            description: "Nombre total de commandes"
+          - name: total_spent
+            description: "Montant total dépensé (lifetime value)"
+          - name: avg_order_value
+            description: "Valeur moyenne des commandes"
+          - name: first_order_date
+            description: "Date de première commande"
+          - name: last_order_date
+            description: "Date de dernière commande"
+          - name: delivered_orders
+            description: "Nombre de commandes livrées"
+          - name: cancelled_orders
+            description: "Nombre de commandes annulées"
+          - name: delivery_success_rate
+            description: "Taux de réussite des livraisons (%)"
+          - name: customer_segment
+            description: "Segment de valeur client"
+          - name: customer_status
+            description: "Statut d'activité du client"
+          - name: customer_tenure
+            description: "Ancienneté du client (New/Recent/Established)"
+          - name: days_since_last_order
+            description: "Nombre de jours depuis la dernière commande"
+          - name: dbt_updated_at
+            description: "Timestamp de dernière mise à jour"
 
-  - name: fact_sales
-    description: "Table de faits des ventes avec toutes les métriques et dimensions pour l'analyse"
-    columns:
-      - name: order_id
-        description: "Identifiant unique de la commande (clé primaire)"
-        tests:
-          - unique
-          - not_null
-      - name: customer_id
-        description: "Clé étrangère vers dim_customers"
-        tests:
-          - not_null
-      - name: order_date
-        description: "Date de la commande"
-        tests:
-          - not_null
-      - name: order_year
-        description: "Année de la commande"
-      - name: order_month
-        description: "Mois de la commande"
-      - name: order_quarter
-        description: "Trimestre de la commande"
-      - name: total_amount
-        description: "Montant total de la commande"
-        tests:
-          - not_null
-      - name: status
-        description: "Statut de la commande"
-      - name: customer_segment
-        description: "Segment du client au moment de la commande"
-      - name: customer_status
-        description: "Statut du client au moment de la commande"
-      - name: day_of_week
-        description: "Jour de la semaine (1=Dimanche, 7=Samedi)"
-      - name: week_of_year
-        description: "Numéro de semaine dans l'année"
-      - name: day_type
-        description: "Type de jour (Weekend/Weekday)"
-      - name: time_of_day
-        description: "Période de la journée (Morning/Afternoon/Evening/Night)"
-      - name: is_high_value_order
-        description: "Flag commande haute valeur (>100€)"
-      - name: is_successful_order
-        description: "Flag commande livrée avec succès"
-      - name: is_cancelled_order
-        description: "Flag commande annulée"
-      - name: delivery_days
-        description: "Nombre de jours de livraison (simulé)"
-      - name: dbt_updated_at
-        description: "Timestamp de dernière mise à jour"
+    - name: fact_sales
+      description: "Table de faits des ventes avec toutes les métriques et dimensions pour l'analyse"
+      columns:
+          - name: order_id
+            description: "Identifiant unique de la commande (clé primaire)"
+            tests:
+                - unique
+                - not_null
+          - name: customer_id
+            description: "Clé étrangère vers dim_customers"
+            tests:
+                - not_null
+          - name: order_date
+            description: "Date de la commande"
+            tests:
+                - not_null
+          - name: order_year
+            description: "Année de la commande"
+          - name: order_month
+            description: "Mois de la commande"
+          - name: order_quarter
+            description: "Trimestre de la commande"
+          - name: total_amount
+            description: "Montant total de la commande"
+            tests:
+                - not_null
+          - name: status
+            description: "Statut de la commande"
+          - name: customer_segment
+            description: "Segment du client au moment de la commande"
+          - name: customer_status
+            description: "Statut du client au moment de la commande"
+          - name: day_of_week
+            description: "Jour de la semaine (1=Dimanche, 7=Samedi)"
+          - name: week_of_year
+            description: "Numéro de semaine dans l'année"
+          - name: day_type
+            description: "Type de jour (Weekend/Weekday)"
+          - name: time_of_day
+            description: "Période de la journée (Morning/Afternoon/Evening/Night)"
+          - name: is_high_value_order
+            description: "Flag commande haute valeur (>100€)"
+          - name: is_successful_order
+            description: "Flag commande livrée avec succès"
+          - name: is_cancelled_order
+            description: "Flag commande annulée"
+          - name: delivery_days
+            description: "Nombre de jours de livraison (simulé)"
+          - name: dbt_updated_at
+            description: "Timestamp de dernière mise à jour"
 
-  - name: agg_daily_metrics
-    description: "Métriques business agrégées par jour avec calculs de croissance et tendances"
-    columns:
-      - name: order_date
-        description: "Date de référence (clé primaire)"
-        tests:
-          - unique
-          - not_null
-      - name: order_year
-        description: "Année de la date"
-      - name: order_month
-        description: "Mois de la date"
-      - name: order_quarter
-        description: "Trimestre de la date"
-      - name: total_orders
-        description: "Nombre total de commandes du jour"
-      - name: unique_customers
-        description: "Nombre de clients uniques ayant commandé"
-      - name: total_revenue
-        description: "Chiffre d'affaires total du jour"
-      - name: avg_order_value
-        description: "Valeur moyenne des commandes"
-      - name: high_value_orders
-        description: "Nombre de commandes haute valeur"
-      - name: successful_orders
-        description: "Nombre de commandes livrées"
-      - name: cancelled_orders
-        description: "Nombre de commandes annulées"
-      - name: avg_delivery_days
-        description: "Délai moyen de livraison"
-      - name: success_rate
-        description: "Taux de réussite des livraisons (%)"
-      - name: cancellation_rate
-        description: "Taux d'annulation (%)"
-      - name: high_value_rate
-        description: "Pourcentage de commandes haute valeur"
-      - name: rolling_7d_avg_revenue
-        description: "Moyenne mobile 7 jours du chiffre d'affaires"
-      - name: rolling_7d_avg_orders
-        description: "Moyenne mobile 7 jours du nombre de commandes"
-      - name: prev_day_revenue
-        description: "Chiffre d'affaires du jour précédent"
-      - name: prev_day_orders
-        description: "Nombre de commandes du jour précédent"
-      - name: revenue_growth_rate
-        description: "Taux de croissance du CA vs jour précédent (%)"
-      - name: orders_growth_rate
-        description: "Taux de croissance des commandes vs jour précédent (%)"
-      - name: dbt_updated_at
-        description: "Timestamp de dernière mise à jour"
+    - name: agg_daily_metrics
+      description: "Métriques business agrégées par jour avec calculs de croissance et tendances"
+      columns:
+          - name: order_date
+            description: "Date de référence (clé primaire)"
+            tests:
+                - unique
+                - not_null
+          - name: order_year
+            description: "Année de la date"
+          - name: order_month
+            description: "Mois de la date"
+          - name: order_quarter
+            description: "Trimestre de la date"
+          - name: total_orders
+            description: "Nombre total de commandes du jour"
+          - name: unique_customers
+            description: "Nombre de clients uniques ayant commandé"
+          - name: total_revenue
+            description: "Chiffre d'affaires total du jour"
+          - name: avg_order_value
+            description: "Valeur moyenne des commandes"
+          - name: high_value_orders
+            description: "Nombre de commandes haute valeur"
+          - name: successful_orders
+            description: "Nombre de commandes livrées"
+          - name: cancelled_orders
+            description: "Nombre de commandes annulées"
+          - name: avg_delivery_days
+            description: "Délai moyen de livraison"
+          - name: success_rate
+            description: "Taux de réussite des livraisons (%)"
+          - name: cancellation_rate
+            description: "Taux d'annulation (%)"
+          - name: high_value_rate
+            description: "Pourcentage de commandes haute valeur"
+          - name: rolling_7d_avg_revenue
+            description: "Moyenne mobile 7 jours du chiffre d'affaires"
+          - name: rolling_7d_avg_orders
+            description: "Moyenne mobile 7 jours du nombre de commandes"
+          - name: prev_day_revenue
+            description: "Chiffre d'affaires du jour précédent"
+          - name: prev_day_orders
+            description: "Nombre de commandes du jour précédent"
+          - name: revenue_growth_rate
+            description: "Taux de croissance du CA vs jour précédent (%)"
+          - name: orders_growth_rate
+            description: "Taux de croissance des commandes vs jour précédent (%)"
+          - name: dbt_updated_at
+            description: "Timestamp de dernière mise à jour"

@@ -1,9 +1,9 @@
-name: 'dbt_learning'
-version: '1.0.0'
+name: "dbt_learning"
+version: "1.0.0"
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'dbt_learning'
+profile: "dbt_learning"
 
 # These configurations specify where dbt should look for different types of files.
 model-paths: ["models"]
@@ -13,54 +13,54 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
-clean-targets:         # directories to be removed by `dbt clean`
-  - "target"
-  - "dbt_packages"
-  - "logs"
+clean-targets: # directories to be removed by `dbt clean`
+    - "target"
+    - "dbt_packages"
+    - "logs"
 
 # Configuring models
 models:
-  dbt_learning:
-    # Config indicated by + and applies to all files under models/example/
-    staging:
-      +materialized: view
-      +docs:
-        node_color: "#8FBC8F"
-    intermediate:
-      +materialized: view
-      +docs:
-        node_color: "#FFB347"
-    marts:
-      +materialized: table
-      +docs:
-        node_color: "#87CEEB"
+    dbt_learning:
+        # Config indicated by + and applies to all files under models/example/
+        staging:
+            +materialized: view
+            +docs:
+                node_color: "#8FBC8F"
+        intermediate:
+            +materialized: view
+            +docs:
+                node_color: "#FFB347"
+        marts:
+            +materialized: table
+            +docs:
+                node_color: "#87CEEB"
 
 # Seeds configuration
 seeds:
-  dbt_learning:
-    +enabled: true
-    +quote_columns: false
+    dbt_learning:
+        +enabled: true
+        +quote_columns: false
 
 # Snapshots configuration
 snapshots:
-  dbt_learning:
-    +target_schema: snapshots
-    +unique_key: id
-    +strategy: timestamp
-    +updated_at: updated_at
+    dbt_learning:
+        +target_schema: snapshots
+        +unique_key: id
+        +strategy: timestamp
+        +updated_at: updated_at
 
 # Tests configuration
 tests:
-  dbt_learning:
-    +severity: error
-    +store_failures: true
+    dbt_learning:
+        +severity: error
+        +store_failures: true
 
 # Vars for the project
 vars:
-  # Date vars
-  start_date: '2020-01-01'
-  end_date: '2024-12-31'
+    # Date vars
+    start_date: "2020-01-01"
+    end_date: "2024-12-31"
 
-  # Source data paths
-  raw_data_path: '../data/raw'
-  processed_data_path: '../data/processed'
+    # Source data paths
+    raw_data_path: "../data/raw"
+    processed_data_path: "../data/processed"

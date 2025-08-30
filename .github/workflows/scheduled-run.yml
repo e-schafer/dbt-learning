@@ -32,6 +32,9 @@ jobs:
             - name: Install DBT dependencies
               run: uv run dbt deps
 
+            - name: Create database directory
+              run: mkdir -p database
+
             - name: Generate sample data
               run: uv run python scripts/generate_sample_data.py
 

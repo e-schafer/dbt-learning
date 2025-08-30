@@ -98,6 +98,44 @@ Le projet supporte :
 -   **Tests Python** : Tests unitaires avec pytest
 -   **Tests d'intégration** : Validation des pipelines complets
 
+## 🧪 Tests locaux du pipeline CI/CD avec ACT
+
+Ce projet inclut un fichier `.actrc` pour tester localement les workflows GitHub Actions avec [ACT](https://github.com/nektos/act).
+
+### Configuration ACT (`.actrc`)
+
+```bash
+--container-architecture linux/amd64  # Architecture compatible (requis sur Apple Silicon)
+-P ubuntu-latest=catthehacker/ubuntu:act-latest  # Image Docker optimisée pour ACT
+--verbose  # Logs détaillés pour le débogage
+```
+
+### Installation et utilisation d'ACT
+
+```bash
+# Installation d'ACT (macOS)
+brew install act
+
+# Tester le pipeline localement
+act                           # Exécute tous les workflows
+act -j lint-and-test         # Exécute seulement le job de test
+act --list                   # Liste tous les jobs disponibles
+act --dryrun                 # Simulation sans exécution
+
+# Debug et développement
+act -j lint-and-test --verbose     # Tests avec logs détaillés
+act -j deploy-docs --dryrun        # Vérifier le job de déploiement
+```
+
+### Pourquoi utiliser ACT ?
+
+-   **Tests rapides** : Valider les changements avant le push
+-   **Debug local** : Identifier les problèmes de pipeline sans commits
+-   **Développement** : Itérer rapidement sur la configuration CI/CD
+-   **Compatibilité** : Même environnement que GitHub Actions
+
+> **Note** : Sur Apple Silicon (M1/M2), l'option `--container-architecture linux/amd64` est requise pour la compatibilité des images Docker.
+
 ## 🔄 CI/CD
 
 Le projet inclut une configuration GitHub Actions pour :
